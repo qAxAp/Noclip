@@ -1,0 +1,18 @@
+Tab:AddButton({
+    Name = "Noclip",
+    Callback = function()
+        local RunService = game:GetService('RunService')
+        local Player = game.Players.LocalPlayer
+        local Character = Player.Character or Player.CharacterAdded:Wait()
+
+        RunService.Stepped:Connect(function()
+            for _, v in pairs(Character:GetDescendants()) do
+                if v:IsA('BasePart') and v.CanCollide then
+                    v.CanCollide = false
+                end
+            end
+        end)
+
+        print('Noclip script loaded and enabled.')
+    end    
+})
